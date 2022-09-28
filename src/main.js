@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import Carta from './scenes/Cartas'
 
 import HelloWorldScene from './scenes/HelloWorldScene'
 
@@ -21,7 +22,7 @@ const config = {
 	physics: {
 		default: 'arcade',
 		arcade: {
-			gravity: { y: 200 },
+			gravity: { y: 0 },
 			debug: false,
 		}
 	},
