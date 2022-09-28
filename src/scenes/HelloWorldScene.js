@@ -258,13 +258,6 @@ export default class HelloWorldScene extends Phaser.Scene
             frameRate: 12
             }) 
 
-            /*let timedEvent = this.time.delayedCall(1500, switchcard, [], this);
-            function switchcard()
-            {carta1.sprite.body.reset(carta5.posicionx,carta5.posiciony);
-            carta5.sprite.body.reset(carta1.posicionx,carta1.posiciony);}
-            this.physics.moveToObject(carta1.sprite,carta5.sprite,null,1500);
-            this.physics.moveToObject(carta5.sprite,carta1.sprite,null,1500);*/
-
             function switchcards1(cartaA, cartaB){
             setTimeout(function switchcards2(){
             cartaA.sprite.body.reset(cartaB.posicionx,cartaB.posiciony);
