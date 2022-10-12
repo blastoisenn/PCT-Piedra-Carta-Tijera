@@ -135,7 +135,7 @@ export default class HelloWorldScene extends Phaser.Scene {
         cartaanterior = 0;
         cartasselec = 0;
       }
-    });*/
+    }); */
 
     const flipboton = this.add.image(400, 500, "flipboton").setScale(0.03);
     flipboton.setInteractive();
