@@ -34,10 +34,9 @@ flipCarta(){
 
   this.flip=0;}
 
-  marcosCartas(marcoA, marcoB, cartaant, lock, selec){
-    if(lock==0){
-    marcoA.body.reset(this.posicionx,this.posiciony);}
-    if(selec!=0){
+  marcosCartas(marcoA, marcoB, cartaant, selec){
+    marcoA.body.reset(this.posicionx,this.posiciony);
+    if(selec>1){
     marcoB.body.reset(cartaant.posicionx,cartaant.posiciony);}}
 }
 
