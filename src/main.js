@@ -7,6 +7,7 @@ import MenuPrincipal from './scenes/Menuprincipal'
 import PantallaCarga from './scenes/PantallaCarga'
 import PostJuego from './scenes/PostJuego'
 import SeleccionPJ from './scenes/SeleccionPJ'
+
 import Tablero from './scenes/Tablero'
 
 const config = {
@@ -32,7 +33,7 @@ const config = {
 			debug: false,
 		}
 	},
-	scene: [HelloWorldScene, Cartas, Jugador, MenuPrincipal, PantallaCarga, PostJuego, SeleccionPJ, Tablero]
+	scene: [PantallaCarga, SeleccionPJ,  HelloWorldScene, Cartas, Jugador, MenuPrincipal, PostJuego, Tablero]
 }
 
 export default new Phaser.Game(config)
