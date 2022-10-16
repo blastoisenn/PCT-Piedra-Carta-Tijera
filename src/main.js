@@ -33,7 +33,10 @@ const config = {
 			debug: false,
 		}
 	},
+
+
 	scene: [PantallaCarga, SeleccionPJ,  HelloWorldScene, Cartas, Jugador, MenuPrincipal, PostJuego, Tablero]
+
 }
 
 export default new Phaser.Game(config)
