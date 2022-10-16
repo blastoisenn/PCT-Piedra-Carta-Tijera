@@ -5,9 +5,9 @@ class Button{
             .setPadding(10)
             .setStyle({
                 backgroundColor: "#fff",
-                fontSize: "50px",
+                fontSize: "80px",
                 fill: "#000",
-                fontFamily: "happy-chicken"
+                fontFamily: 'Happy Chicken'
             })
             .setInteractive({UseHandcursor: true})
             .on('pointerdown', () => callback())

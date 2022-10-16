@@ -70,6 +70,7 @@ export default class PantallaCarga extends Phaser.Scene
 		frameWidth: 150,
 		frameHeight: 215,
 		 });
+    
 	this.load.image("cartaselect1", "assets/cartaselect1.png");
     this.load.image("cartaselect2", "assets/cartaselect2.png");
     this.load.image("switchboton", "assets/confirmarboton.png");
@@ -79,16 +80,24 @@ export default class PantallaCarga extends Phaser.Scene
 	this.load.image("papersicon", "assets/papersicon.png");
 	this.load.image("rockicon", "assets/rockicon.png");
 	this.load.image("scissorsicon", "assets/scissorsicon.png");
+	this.load.image("papersicon2", "assets/papersicon2.png");
+	this.load.image("rockicon2", "assets/rockicon2.png");
+	this.load.image("scissorsicon2", "assets/scissorsicon2.png");
 	this.load.image("selectfondo", "assets/selectfondo.png");
 	this.load.image("papernormalpose","assets/papernormalpose.png");
 	this.load.image("scissorsnormalpose","assets/scissorsnormalpose.png");
 	this.load.image("rocknormalpose","assets/rocknormalpose.png");
 	this.load.image("VS","assets/VS.png");
+	this.load.audio("MusicaMenu", "assets/sounds/Música Menú Principal.mp3") 
+	this.load.audio("CartaFlip", "assets/sounds/Card_Flip.mp3")
+	this.load.image("FondoMenu", "assets/menufondo.png")
+	this.load.image("Logo", "assets/logo.png")
+	this.load.image("BotonConfig", "assets/Ajustes.png")
 	
 }
 	create() { 
 		
 		
-		this.scene.start('SeleccionPJ'); 
+		this.scene.start('MenuPrincipal'); 
 
   }}

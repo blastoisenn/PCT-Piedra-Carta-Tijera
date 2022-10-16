@@ -35,7 +35,7 @@ const config = {
 	},
 
 
-	scene: [PantallaCarga, SeleccionPJ,  HelloWorldScene, Cartas, Jugador, MenuPrincipal, PostJuego, Tablero]
+	scene: [PantallaCarga, MenuPrincipal,  HelloWorldScene, Cartas, Jugador,  SeleccionPJ, PostJuego, Tablero]
 
 }
 
