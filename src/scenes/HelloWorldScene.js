@@ -103,26 +103,32 @@ export default class HelloWorldScene extends Phaser.Scene {
     var tipop;
     const tipos = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2].sort((a, b) => 0.5 - Math.random());
     const pos = [
-      { x: 150, y: 150 },
-      { x: 300, y: 150 },
-      { x: 400, y: 150 },
-      { x: 500, y: 150 },
-      { x: 650, y: 150 },
-      { x: 150, y: 275 },
-      { x: 300, y: 275 },
-      { x: 400, y: 275 },
-      { x: 500, y: 275 },
-			{ x: 650, y: 275 },
-			{ x: 150, y: 400 },
-      { x: 300, y: 400 },
-      { x: 400, y: 400 },
-      { x: 500, y: 400 },
-			{ x: 650, y: 400 },
+      { x: 525, y: 250 },
+      { x: 775, y: 250 },
+      { x: 960, y: 250 },
+      { x: 1145, y: 250 },
+      { x: 1395, y: 250 },
+      { x: 525, y: 500 },
+      { x: 775, y: 500 },
+      { x: 960, y: 500 },
+      { x: 1145, y: 500 },
+			{ x: 1395, y: 500 },
+			{ x: 525, y: 750 },
+      { x: 775, y: 750 },
+      { x: 960, y: 750 },
+      { x: 1145, y: 750 },
+			{ x: 1395, y: 750 },
     ];
-
-    let manoturno=150;
+    
+    let puntajej1=0;
+    let puntajej2=0;
+    let cartaj1;
+    let cartaj2;
+    let manoturno=525;
     let block;
-    let blockx=650;
+    let block1;
+    let block2;
+    let blockx=1395;
     let turno=1;
     let turnoj=1;
     let seleccion1
@@ -138,10 +144,10 @@ export default class HelloWorldScene extends Phaser.Scene {
 
     const marco1 = this.physics.add
       .image(10000, 10000, "cartaselect1")
-      .setScale(0.1);
+      .setScale(0.2);
     const marco2 = this.physics.add
       .image(10000, 10000, "cartaselect1")
-      .setScale(0.1);
+      .setScale(0.2);
 
     console.log(turno);
 
@@ -154,7 +160,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 
       carta.sprite = contexto.physics.add
         .sprite(posx, posy, "cartassprites", carta.tipo * 10)
-        .setScale(0.5);
+        
       carta.posicionx = posx;			
       carta.posiciony = posy;
       carta.sprite.setInteractive();
@@ -194,9 +200,9 @@ export default class HelloWorldScene extends Phaser.Scene {
         cartaanterior = 0;
         cartasselec = 0;
       }
-    });*/
+    }); */
 
-    const flipboton = this.add.image(400, 500, "flipboton").setScale(0.03);
+    const flipboton = this.add.image(960, 980, "flipboton").setScale(0.08);
     flipboton.setInteractive();
     flipboton.on("pointerdown", (pointer, localX, localY) => {
       /*if(lock==0&&cartasselec>0){
@@ -220,10 +226,10 @@ export default class HelloWorldScene extends Phaser.Scene {
       setTimeout(function switchcards2() {
           lock=0;
           crearBlock();
-          const switchboton = contexto2.add.image(400, 500, "switchboton").setScale(0.1);
+          const switchboton = contexto2.add.image(960, 980, "switchboton").setScale(0.2);
           switchboton.setInteractive();
           switchboton.on("pointerdown", (pointer, localX, localY) => {
-            if (cartasselec >= 2 && lock == 0 
+            if (cartasselec >= 2 && lock == 0 && turno<13
             && ((seleccion1.posicionx==manoturno&&seleccion2.posicionx!=manoturno)
             ||(seleccion2.posicionx==manoturno&&seleccion1.posicionx!=manoturno))) {
               lock = 1;
@@ -249,6 +255,41 @@ export default class HelloWorldScene extends Phaser.Scene {
               cartaanterior = 0;
               cartasselec = 0;
             }
+
+            if (cartasselec >= 2 && lock == 0 && turno>12
+              && ((seleccion1.posicionx==manoturno&&seleccion2.posicionx==blockx)
+              ||(seleccion2.posicionx==manoturno&&seleccion1.posicionx==blockx))) {
+              
+                if(seleccion1.posicionx==manoturno){
+                cartaj1=seleccion1.tipo;
+                cartaj2=seleccion2.tipo;
+                }else{
+                cartaj1=seleccion2.tipo;
+                cartaj2=seleccion1.tipo; 
+                }
+                marco1.body.reset(10000, 10000);
+                marco2.body.reset(10000, 10000);
+                compararCartas(cartaj1,cartaj2);
+                seleccion1.flipCarta();
+                seleccion2.flipCarta();
+                block1=contexto2.add.image(seleccion1.posicionx,seleccion1.posiciony,"block")
+                block1.displayHeight=300;
+                block1.displayWidth=150;
+                block1.setInteractive();
+                block1.on("pointerdown", (pointer, localX, localY) => {})
+                block2=contexto2.add.image(seleccion2.posicionx,seleccion2.posiciony,"block")
+                block2.displayHeight=300;
+                block2.displayWidth=150;
+                block2.setInteractive();
+                block2.on("pointerdown", (pointer, localX, localY) => {})
+                seleccion1 = 0;
+                seleccion2 = 0;
+                cartaanterior = 0;
+                cartasselec = 0;
+                console.log(puntajej1);
+                console.log(puntajej2);
+              }
+
           });
           
       }, 4000);
@@ -329,8 +370,10 @@ export default class HelloWorldScene extends Phaser.Scene {
         turno++;
         block.destroy();
         turnoCambio();
-        crearBlock();
+        if(turno<13){
+        crearBlock();}
         medioTiempo();
+        juegoFinal();
         console.log(turno);
       }, 1500);
     }
@@ -347,27 +390,66 @@ export default class HelloWorldScene extends Phaser.Scene {
 
     function turnoCambio(){
     if(lock==0){
-    if(blockx==650){blockx=150;turnoj=2;manoturno=650;lock=1;}}
+    if(blockx==1395){blockx=525;turnoj=2;manoturno=1395;lock=1;}}
     if(lock==0){
-    if(blockx==150){blockx=650;turnoj=1;manoturno=150;lock=1;}}
+    if(blockx==525){blockx=1395;turnoj=1;manoturno=525;lock=1;}}
     lock=0;
     }
 
     function crearBlock(){
-      block=contexto2.add.image(blockx,275,"block")
-      block.displayHeight=500;
-      block.displayWidth=100;
+      block=contexto2.add.image(blockx,500,"block")
+      block.displayHeight=1000;
+      block.displayWidth=300;
       block.setInteractive();
       block.on("pointerdown", (pointer, localX, localY) => {})
     }
 
     function medioTiempo(){
       if(turno==7){
+        lock=1;
         for(let i=0;i<15;i++){
           if((cartas[i].posicionx!=manoturno)&&(cartas[i].posicionx!=blockx)){
-          cartas[i].flipCarta();}}}
+          cartas[i].flipCarta();}}
       
+      setTimeout(function switchcards2() {
+        for(let i=0;i<15;i++){
+          if((cartas[i].posicionx!=manoturno)&&(cartas[i].posicionx!=blockx)){
+          cartas[i].flipCarta();}}
+        lock=0;
+          }, 10000);
+  
+        }}
+
+        function juegoFinal(){
+          if(turno==13){
+            lock=1;
+            for(let i=0;i<15;i++){
+              if((cartas[i].posicionx!=manoturno)&&(cartas[i].posicionx!=blockx)){
+                contexto2.physics.moveTo(cartas[i].sprite,cartas[i].posicionx,-2000, 600);}}
+          
+          setTimeout(function switchcards2() {
+            for(let i=0;i<15;i++){
+              if((cartas[i].posicionx!=manoturno)&&(cartas[i].posicionx!=blockx)){
+              cartas[i].sprite.body.reset(-2000, -2000);}}
+            lock=0;
+              }, 3000);
       
-    }
+            }}
+
+        function compararCartas(carta1,carta2){
+        if(carta1==0){
+          if (carta2==1){puntajej2++}
+          if (carta2==2){puntajej1++}
+        }
+        if(carta1==1){
+          if (carta2==2){puntajej2++}
+          if (carta2==0){puntajej1++}
+        }
+        if(carta1==2){
+          if (carta2==0){puntajej2++}
+          if (carta2==1){puntajej1++}
+        }}
+
+    
   }
 }

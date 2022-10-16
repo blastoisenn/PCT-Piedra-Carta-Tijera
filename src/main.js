@@ -12,18 +12,18 @@ import Tablero from './scenes/Tablero'
 
 const config = {
 	type: Phaser.AUTO,
-	width: 800,
-	height: 600,
+	width: 1920,
+	height: 1080,
 	scale: {
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_BOTH,
 		min: {
 			width: 800,
-			height: 600,
+			height: 450,
 		},
 		max: {
 			width: 1600,
-			height: 1200,
+			height: 900,
 		},
 	},
 	physics: {
