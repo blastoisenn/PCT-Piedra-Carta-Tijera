@@ -22,20 +22,79 @@ export default class HelloWorldScene extends Phaser.Scene {
   }
 
   preload() {
-    //this.load.setBaseURL('http://labs.phaser.io')
 
-    this.load.spritesheet("cartassprites", "assets/cartassprites.png", {
-      frameWidth: 150,
-      frameHeight: 215,
-    });
-    this.load.image("cartaselect1", "assets/cartaselect1.png");
+    let progressBar = this.add.graphics();
+		let progressBox = this.add.graphics();
+		progressBox.fillStyle(0x2b2829, 0.8);
+		progressBox.fillRect(630, 590, 620, 50);
+	
+		let width = this.cameras.main.width;
+		let height = this.cameras.main.height;
+		let loadingText = this.make.text({
+		x: width / 2,
+		y: height / 2 - 50,
+		text: 'CARGANDO...',
+		style: {
+			font: '80px Impact'
+			
+			
+		}
+	});
+	loadingText.setOrigin(0.5, 0.5);
+	
+	let percentText = this.make.text({
+	  x: width / 2.04,
+	  y: height / 2 + 74,
+	  text: '0%',
+  
+	  style: {
+		  font: '20px Happy Chicken',
+      color: '#fff'
+		  
+		  
+	  }
+	});
+	percentText.setOrigin(0.5, 0.5);
+	
+	
+		this.load.on('progress', function (value) {
+		  console.log(value);
+      
+		  percentText.setText(parseInt (value, 100) + '%');
+		  progressBar.clear();
+		  progressBar.fillStyle(0xc91429, 1);
+		  progressBar.fillRect(640, 600, 600 * value, 30);
+	  });
+	  
+		
+		this.load.on('progress', function (value) {
+		  console.log(value);
+	  });
+				  
+	  this.load.on('fileprogress', function (file) {
+		  console.log(file.src);
+	  });
+	  this.load.on('complete', function () {
+		  console.log('complete');
+		  progressBar.destroy();
+	progressBox.destroy();
+	  });
+		
+	  
+	  this.load.spritesheet("cartassprites", "assets/cartassprites.png", {
+		frameWidth: 150,
+		frameHeight: 215,
+		 });
+	this.load.image("cartaselect1", "assets/cartaselect1.png");
     this.load.image("cartaselect2", "assets/cartaselect2.png");
     this.load.image("switchboton", "assets/confirmarboton.png");
     this.load.image("flipboton", "assets/loadgif.png");
     this.load.image("background", "assets/bg.png");
     this.load.image("block", "assets/block.png");
-  }
+	
+}
 
+  
   create() {
     const contexto2=this;
     const cartas = [];
