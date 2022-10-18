@@ -5,6 +5,7 @@ class Tablero {
       this.puntajej1 = puntajej1
       this.puntajej2 = puntajej2
     }
+
   }
-  
+
   export default Tablero;

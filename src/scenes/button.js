@@ -4,15 +4,17 @@ class Button{
             .setOrigin(0.5)
             .setPadding(10)
             .setStyle({
-                backgroundColor: "#fff",
+                backgroundColor: null,
                 fontSize: "80px",
-                fill: "#000",
+                fill: "#fff",
+                stroke: '#000000',
+                strokeThickness: 11,
                 fontFamily: 'Happy Chicken'
             })
             .setInteractive({UseHandcursor: true})
             .on('pointerdown', () => callback())
-            .on('pointerover', () => button.setStyle({ fill: '#0000ff' }))
-            .on('pointerout', () => button.setStyle({ fill: '#000' }));
+            .on('pointerover', () => button.setStyle({ fill: '#B7BBC5' }))
+            .on('pointerout', () => button.setStyle({ fill: '#fff' }));
     }
 }
 export default Button;

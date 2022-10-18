@@ -34,10 +34,12 @@ flipCarta(){
 
   this.flip=0;}
 
-  marcosCartas(marcoA, marcoB, cartaant, selec){
+  marcosCartas(marcoA, marcoB, cartaant, selec, color){
     marcoA.body.reset(this.posicionx,this.posiciony);
+    marcoA.tint=color;
     if(selec>1){
-    marcoB.body.reset(cartaant.posicionx,cartaant.posiciony);}}
+    marcoB.body.reset(cartaant.posicionx,cartaant.posiciony);
+    marcoB.tint=color;}}
 }
 
 

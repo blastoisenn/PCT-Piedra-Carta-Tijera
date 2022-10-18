@@ -1,4 +1,12 @@
-let papernormalposedestroy
+
+
+export default class SeleccionPJ extends Phaser.Scene
+{
+	constructor()
+	{super('SeleccionPJ')}
+	
+	create() { 
+		let papernormalposedestroy
 let rocknormalposedestroy
 let scissorsnormalposedestroy
 let posxjg1 = 300
@@ -15,19 +23,12 @@ let lock2=0
 let lock3=0
 let jugadoresselec=0;
 
-export default class SeleccionPJ extends Phaser.Scene
-{
-	constructor()
-	{super('SeleccionPJ')}
-	
-	create() { 
-
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'selectfondo').setScale(0.6);
 		let versusb = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY+200, 'VS').setScale(0.1);
 		versusb.setInteractive();
 		versusb.on('pointerdown', (pointer, localX, localY) => {
 		if(jugadoresselec==2){
-		this.scene.start("hello-world")}})
+		this.scene.start("hello-world",{ seleccionj1: seleccionj1, seleccionj2: seleccionj2  })}})
 		
 		///////////////////////// PAPER
 		let papersmouse = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'papersicon').setScale(0.1);

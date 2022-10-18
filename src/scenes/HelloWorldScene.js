@@ -21,8 +21,15 @@ export default class HelloWorldScene extends Phaser.Scene {
     super("hello-world");
   }
 
+  init(data)
+{
+    this.seleccionj1 = data.seleccionj1;
+    this.seleccionj2 = data.seleccionj2;
+}
   
   create() {
+
+    
     const contexto2=this;
     const cartas = [];
     var tiponuevo;
@@ -47,6 +54,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 			{ x: 1395, y: 750 },
     ];
     
+    const colores=[0, 0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
     let puntajej1=0;
     let puntajej2=0;
     let cartaj1;
@@ -67,7 +75,37 @@ export default class HelloWorldScene extends Phaser.Scene {
     let posicionmarcoy = 1000;
     let cartasselec = 0;
     let lock = 1;
+    let seleccionjug1=this.seleccionj1
+    let seleccionjug2=this.seleccionj2
+    let color=colores[seleccionjug1]
+    let scoreTextoj1;
+    let scoreTextoj2;
+    let ganador;
+
+    console.log(seleccionjug1);
+    console.log(seleccionjug2);
+
+    const partida = new Tablero(seleccionjug1, seleccionjug2, 0, 0);
+
     this.add.image(500, 500, "selectfondo").setScale(4);
+    const fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'Fondoj1').setScale(0.6);
+    const fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'Fondoj2').setScale(0.6);
+    fondo1.tint=colores[seleccionjug1]
+    fondo2.tint=colores[seleccionjug2]
+
+    function crearPersonajes(jug1,jug2){
+      if(jug1==1){
+      contexto2.add.image(250, 600, 'rocknormalpose').setScale(0.28);}
+      else{if(jug1==2){contexto2.add.image(250, 600, 'papernormalpose').setScale(0.28);}
+      else{contexto2.add.image(250, 600, 'scissorsnormalpose').setScale(0.28);}}
+
+      if(jug2==1){
+        contexto2.add.image(1670, 600, 'rocknormalpose').setScale(0.28);}
+        else{if(jug2==2){contexto2.add.image(1670, 600, 'papernormalpose').setScale(0.28);}
+        else{contexto2.add.image(1670, 600, 'scissorsnormalpose').setScale(0.28);}}
+    }
+
+    crearPersonajes(seleccionjug1,seleccionjug2);
 
     const marco1 = this.physics.add
       .image(10000, 10000, "cartaselect1")
@@ -213,6 +251,10 @@ export default class HelloWorldScene extends Phaser.Scene {
                 seleccion2 = 0;
                 cartaanterior = 0;
                 cartasselec = 0;
+                turno++;
+                scoreTextoj1.setText(puntajej1);
+                scoreTextoj2.setText(puntajej2);
+                finDePartida()
                 console.log(puntajej1);
                 console.log(puntajej2);
               }
@@ -221,7 +263,9 @@ export default class HelloWorldScene extends Phaser.Scene {
           
       }, 4000);
     });
-   
+    const switchboton2 = contexto2.add.image(1400, 980, "Puntos").setScale(0.12);
+    switchboton2.setInteractive();
+    switchboton2.on("pointerdown", (pointer, localX, localY) => {turno=11})
 
     const Rflipanim1 = this.anims.create({
       key: "Rflip1",
@@ -296,11 +340,13 @@ export default class HelloWorldScene extends Phaser.Scene {
         lock = 0;
         turno++;
         block.destroy();
+        cambioColor()
         turnoCambio();
         if(turno<13){
         crearBlock();}
         medioTiempo();
         juegoFinal();
+        puntajes();
         console.log(turno);
       }, 1500);
     }
@@ -311,7 +357,7 @@ export default class HelloWorldScene extends Phaser.Scene {
       seleccion2 = seleccion1;
       seleccion1 = cartasel;
       cartasselec++;
-      cartasel.marcosCartas(marco1, marco2, cartaanterior, cartasselec);
+      cartasel.marcosCartas(marco1, marco2, cartaanterior, cartasselec, color);
       cartaanterior = cartasel;}
     }
 
@@ -377,6 +423,50 @@ export default class HelloWorldScene extends Phaser.Scene {
           if (carta2==1){puntajej1++}
         }}
 
-    
-  }
-}
+        function cambioColor(){
+        let lock4=0;
+        if(lock4==0){
+        if(color==colores[seleccionjug1]){color=colores[seleccionjug2]; lock4=1}}
+        if(lock4==0){
+        if(color==colores[seleccionjug2]){color=colores[seleccionjug1]; lock4=1}}; lock4=0}
+
+        function puntajes(){
+          if(turno==13){
+          scoreTextoj1 = contexto2.add.text(155, 10, '0', { 
+            font: '130px Happy Chicken',
+            stroke: '#000000',
+            strokeThickness: 11,});
+          scoreTextoj2 = contexto2.add.text(1660, 10, '0', { 
+            font: '130px Happy Chicken',
+            stroke: '#000000',
+            strokeThickness: 11, });}}
+
+        function finDePartida(){
+          if(puntajej1==2){ganador=1; lock=1;
+            setTimeout(function terminar() {
+            contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador })
+            },1500);}
+
+          if(puntajej2==2){ganador=2;lock=1;
+            setTimeout(function terminar() {
+            contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador  })
+          },1500);}
+
+            if(turno==16){
+          if(puntajej1>puntajej2){ganador=1; lock=1;
+            setTimeout(function terminar() {
+            contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador })
+            },1500);}
+          if(puntajej1<puntajej2){ganador=2;lock=1;
+            setTimeout(function terminar() {
+            contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador  })
+          },1500);}
+          if(puntajej1==puntajej2){
+          ganador=0;lock=1;
+          setTimeout(function terminar() {
+          contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador  })
+          },1500);}}}
+
+        }}
+
+

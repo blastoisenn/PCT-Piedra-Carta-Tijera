@@ -93,6 +93,11 @@ export default class PantallaCarga extends Phaser.Scene
 	this.load.image("FondoMenu", "assets/menufondo.png")
 	this.load.image("Logo", "assets/logo.png")
 	this.load.image("BotonConfig", "assets/Ajustes.png")
+	this.load.image("Fondoj1", "assets/gmbg1.png")
+	this.load.image("Fondoj2", "assets/gmbg2.png")
+	this.load.image("FondoGanador", "assets/winbg.png")
+	this.load.image("FondoPerdedor", "assets/losebg.png")
+	this.load.image("Puntos", "assets/dotdotdot.png")
 	
 }
 	create() { 
