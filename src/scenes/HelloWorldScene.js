@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import Carta from "./Cartas";
 import Jugador from "./Jugador";
+import { getPhrase } from "./Services/translations";
 import Tablero from "./Tablero";
 
 // Manejador de eventos centralizados para comunicacion de componentes
@@ -32,9 +33,6 @@ export default class HelloWorldScene extends Phaser.Scene {
     
     const contexto2=this;
     const cartas = [];
-    var tiponuevo;
-    var tiposr = 8;
-    var tipop;
     const tipos = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2].sort((a, b) => 0.5 - Math.random());
     const pos = [
       { x: 525, y: 250 },
@@ -93,11 +91,9 @@ export default class HelloWorldScene extends Phaser.Scene {
     console.log(seleccionjug1);
     console.log(seleccionjug2);
 
-    const partida = new Tablero(seleccionjug1, seleccionjug2, 0, 0);
-
     this.add.image(500, 500, "selectfondo").setScale(4);
-    const fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'Fondoj1').setScale(0.6);
-    const fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'Fondoj2').setScale(0.6);
+    let fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'Fondoj1').setScale(0.6);
+    let fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'Fondoj2').setScale(0.6);
     fondo1.tint=colores[seleccionjug1]
     fondo2.tint=colores[seleccionjug2]
 
@@ -118,10 +114,10 @@ export default class HelloWorldScene extends Phaser.Scene {
 
     crearPersonajes(seleccionjug1,seleccionjug2);
 
-    const marco1 = this.physics.add
+    let marco1 = this.physics.add
       .image(10000, 10000, "cartaselect1")
       .setScale(0.2);
-    const marco2 = this.physics.add
+    let marco2 = this.physics.add
       .image(10000, 10000, "cartaselect1")
       .setScale(0.2);
 
@@ -148,30 +144,30 @@ export default class HelloWorldScene extends Phaser.Scene {
       cartas.push(carta);
     }, this);
     function crearRecuerdaTexto(){
-    recuerdaTexto = contexto2.add.text(contexto2.cameras.main.centerX*0.75, 1, 'Recuerda', { 
+    recuerdaTexto = contexto2.add.text(contexto2.cameras.main.centerX*0.75, 1, getPhrase('Recuerda'), { 
       font: '80px Happy Chicken',
       stroke: '#000000',
       strokeThickness: 11,});}
 
-    turnoj1Texto = contexto2.add.text(contexto2.cameras.main.centerX*0.027, 60, ('Turno: '+turnoj1+"/6"), { 
+    turnoj1Texto = contexto2.add.text(contexto2.cameras.main.centerX*0.027, 60, (getPhrase('turno')+': '+turnoj1+"/6"), { 
       font: '55px Happy Chicken',
       stroke: '#000000',
       strokeThickness: 11,});
     
-    turnoj2Texto = contexto2.add.text(contexto2.cameras.main.centerX*1.62, 60, ('Turno: 1/6'), { 
+    turnoj2Texto = contexto2.add.text(contexto2.cameras.main.centerX*1.62, 60, (getPhrase('turno') +': 1/6'), { 
       font: '55px Happy Chicken',
       stroke: '#000000',
       strokeThickness: 11,});
 
     function actualizarTextos(){
-      turnoj1Texto.setText('Turno: '+turnoj1+"/6");
-      turnoj2Texto.setText('Turno: '+turnoj2+"/6");
+      turnoj1Texto.setText((getPhrase('turno')+': '+turnoj1+"/6"));
+      turnoj2Texto.setText((getPhrase('turno')+': '+turnoj2+"/6"));
     }
 
       crearRecuerdaTexto()
 
 
-    const flipboton = this.add.image(960, 980, "flipboton").setScale(0.08);
+    let flipboton = this.add.image(960, 980, "flipboton").setScale(0.08);
     flipboton.setInteractive();
     flipboton.on("pointerdown", (pointer, localX, localY) => {
       /*if(lock==0&&cartasselec>0){
@@ -272,7 +268,7 @@ export default class HelloWorldScene extends Phaser.Scene {
           
       }, 4000);
     });
-    const switchboton2 = contexto2.add.image(1400, 980, "VS").setScale(0.12);
+    let switchboton2 = contexto2.add.image(1400, 980, "VS").setScale(0.12);
     switchboton2.setInteractive();
     switchboton2.on("pointerdown", (pointer, localX, localY) => {turno=11})
 

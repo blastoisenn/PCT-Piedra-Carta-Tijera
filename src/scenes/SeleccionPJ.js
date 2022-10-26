@@ -1,3 +1,4 @@
+import { getPhrase } from "./Services/translations"
 
 
 export default class SeleccionPJ extends Phaser.Scene
@@ -24,16 +25,16 @@ let lock2=0
 let lock3=0
 let jugadoresselec=0;
 let eligej1
-const colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
+let colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'selectfondo').setScale(0.6);
 		
-		contextoPJ.add.text(730, 50, 'Elige', { 
+		contextoPJ.add.text(730, 50, getPhrase('Elige'), { 
 			font: '145px Happy Chicken',
 			stroke: '#000000',
 			strokeThickness: 11,})
 		
-		eligej1 = contextoPJ.add.text(840, 270, 'J1', { 
+		eligej1 = contextoPJ.add.text(840, 270, getPhrase('J1'), { 
 			font: '180px Happy Chicken',
 			stroke: '#000000',
 			strokeThickness: 11,})
@@ -157,10 +158,12 @@ const colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 				if(jugadoresselec<2){
 				if(seleccionj1==0){
 				rockmouse.destroy();
-				let rockmouse2 = this.add.image(this.cameras.main.centerX-200, this.cameras.main.centerY+120, 'rockicon2').setScale(0.1);
+				
 				let fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'fondoselec1').setScale(0.6);
+				
 				fondo1.tint=colores[0];
 				this.add.image(posxjg1, 590, 'rockatlas', 1).setScale(1.05).setDepth(0);
+				let rockmouse2 = this.add.image(this.cameras.main.centerX-200, this.cameras.main.centerY+120, 'rockicon2').setScale(0.1);
 				this.add.image(320, 970, 'rocklogo').setScale(0.27)
 				seleccionj1=1;
 			    jugadoresselec++;
@@ -169,11 +172,13 @@ const colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 			}
 				else{
 				rockmouse.destroy();
-				let rockmouse2 = this.add.image(this.cameras.main.centerX-200, this.cameras.main.centerY+120, 'rockicon2').setScale(0.1);
+				
 				let fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'fondoselec2').setScale(0.6);
+				let rockmouse2 = this.add.image(this.cameras.main.centerX-200, this.cameras.main.centerY+120, 'rockicon2').setScale(0.1);
 				fondo2.tint=colores[0];
 				this.add.image(posxjg2, 590, 'rockatlas', 1).setScale(1.05).setDepth(0).flipX=true;
 				this.add.image(1620, 970, 'rocklogo').setScale(0.27)
+				scissorsmouse.setDepth(1);
 				seleccionj2=1;
 				jugadoresselec++;
 				rocknormalposedestroy.destroy();
@@ -190,8 +195,9 @@ const colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 				if(jugadoresselec<2){
 				if(seleccionj1==0){
 				papersmouse.destroy();
-				let papersmouse2 = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY+120, 'papersicon2').setScale(0.1);
+				
 				let fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'fondoselec1').setScale(0.6);
+				let papersmouse2 = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY+120, 'papersicon2').setScale(0.1);
 				fondo1.tint=colores[1];
 				this.add.image(posxjg1, posyjg1, 'papersatlas', 1).setScale(0.9);
 				this.add.image(350, 970, 'paperlogo').setScale(0.27)
@@ -199,15 +205,18 @@ const colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 				seleccionj1=2;
 				jugadoresselec++;
 				papernormalposedestroy.destroy();
+				rockmouse.setDepth(1);
 				EligeJugador();
 			}
 				else{
 				papersmouse.destroy();
-				let papersmouse2 = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY+120, 'papersicon2').setScale(0.1);
+				
 				let fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'fondoselec2').setScale(0.6);
+				let papersmouse2 = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY+120, 'papersicon2').setScale(0.1);
 				fondo2.tint=colores[1];
 				this.add.image(posxjg2, posyjg2, 'papersatlas', 1).setScale(0.9).flipX=true;
 				this.add.image(1620, 970,  'paperlogo').setScale(0.27)
+				scissorsmouse.setDepth(1);
 				seleccionj2=2;
 				jugadoresselec++;
 				papernormalposedestroy.destroy();
@@ -224,11 +233,13 @@ const colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 				scissorsmouse.setDepth(2);
 				if(jugadoresselec<2){
 				if(seleccionj1==0){
-				let scissorsmouse2 = this.add.image(this.cameras.main.centerX+200, this.cameras.main.centerY+120, 'scissorsicon2').setScale(0.1);
+				
 				let fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'fondoselec1').setScale(0.6);
+				let scissorsmouse2 = this.add.image(this.cameras.main.centerX+200, this.cameras.main.centerY+120, 'scissorsicon2').setScale(0.1);
                 fondo1.tint=colores[2];
 				this.add.image(posxjg1, posyjg1, 'scissorsatlas',1).setScale(0.9);
 				this.add.image(300, 970, 'scissorslogo').setScale(0.27)
+				rockmouse.setDepth(1);
 				scissorsmouse.destroy();
 				seleccionj1=3;
 				jugadoresselec++;
@@ -237,8 +248,9 @@ const colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 			}	
 				else{
 				scissorsmouse.destroy();
-				let scissorsmouse2 = this.add.image(this.cameras.main.centerX+200, this.cameras.main.centerY+120, 'scissorsicon2').setScale(0.1);
+				
 				let fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'fondoselec2').setScale(0.6);
+				let scissorsmouse2 = this.add.image(this.cameras.main.centerX+200, this.cameras.main.centerY+120, 'scissorsicon2').setScale(0.1);
 				this.add.image(posxjg2, posyjg2, 'scissorsatlas',1).setScale(0.9).flipX=true;
 				fondo2.tint=colores[2];
 				this.add.image(1620, 970,  'scissorslogo').setScale(0.27)
@@ -259,7 +271,7 @@ const colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 				
 				function EligeJugador(){
 					if(jugadoresselec==1){
-			 	contextoPJ.add.text(835, 270, 'J2', { 
+			 	contextoPJ.add.text(835, 270, getPhrase('J2'), { 
 					font: '180px Happy Chicken',
 					stroke: '#000000',
 					strokeThickness: 11,})

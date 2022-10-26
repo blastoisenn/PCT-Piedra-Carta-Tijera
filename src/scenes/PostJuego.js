@@ -1,4 +1,5 @@
 import Button from "./button"
+import { getPhrase } from "./Services/translations";
 export default class PostJuego extends Phaser.Scene
 
 {
@@ -24,8 +25,8 @@ export default class PostJuego extends Phaser.Scene
 		let j2y;
 		let spritej1;
 		let spritej2;
-		const contexto=this
-		const colores=[0, 0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
+		let contexto=this
+		let colores=[0, 0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 
         function crearSprites(){
 		if(seleccionj1==1){
@@ -55,8 +56,8 @@ export default class PostJuego extends Phaser.Scene
 		j2x=1000;
 		j2y=500;
 		//sprites()
-	    const fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'FondoGanador').setScale(0.6);
-        const fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'FondoPerdedor').setScale(0.6);
+	    let fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'FondoGanador').setScale(0.6);
+        let fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'FondoPerdedor').setScale(0.6);
         fondo1.tint=colores[seleccionj1]
         fondo2.tint=colores[seleccionj2]
 		crearSprites()
@@ -67,8 +68,8 @@ export default class PostJuego extends Phaser.Scene
 		j2x=500;
 		j2y=500;
 		//sprites()
-		const fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'FondoGanador').setScale(0.6);
-		const fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'FondoPerdedor').setScale(0.6);
+		let fondo1=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'FondoGanador').setScale(0.6);
+		let fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'FondoPerdedor').setScale(0.6);
 		fondo1.tint=colores[seleccionj2]
 		fondo2.tint=colores[seleccionj1]
 		crearSprites()
@@ -83,9 +84,9 @@ export default class PostJuego extends Phaser.Scene
 		crearSprites()
 		}
 
-		const botonmenu = new Button(this.cameras.main.centerX, this.cameras.main.centerY*1.35, "Menu", this, () =>
+		let botonmenu = new Button(this.cameras.main.centerX, this.cameras.main.centerY*1.35, getPhrase("Menu"), this, () =>
 			{this.scene.start("MenuPrincipal")})
-		const botonvolver = new Button(this.cameras.main.centerX, this.cameras.main.centerY*1.65, "Revancha", this, () =>
+		let botonvolver = new Button(this.cameras.main.centerX, this.cameras.main.centerY*1.65, getPhrase("Revancha"), this, () =>
 			{this.scene.start("hello-world")})
 	}
 }

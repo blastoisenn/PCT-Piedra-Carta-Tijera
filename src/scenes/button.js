@@ -1,6 +1,6 @@
 class Button{
     constructor (x, y, label, scene, callback){
-        const button = scene.add.text(x,y,label)
+        let button = scene.add.text(x,y,label)
             .setOrigin(0.5)
             .setPadding(10)
             .setStyle({

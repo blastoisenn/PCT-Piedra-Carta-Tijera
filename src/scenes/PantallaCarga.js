@@ -1,12 +1,16 @@
+import { EN_US } from "./enums/languages.js";
+import { getLanguageConfig, getPhrase, getTranslations } from "./Services/translations.js";
 export default class PantallaCarga extends Phaser.Scene
 {
+	#language;
+
 	constructor()
 	{
 		super('PantallaCarga')
 	}
 	preload() {
 		
-		
+		getTranslations(this.#language)
 		
 		var progressBar = this.add.graphics();
 		var progressBox = this.add.graphics();
@@ -18,7 +22,6 @@ export default class PantallaCarga extends Phaser.Scene
 		var loadingText = this.make.text({
 		x: width / 2,
 		y: height / 2 - 50,
-		text: 'CARGANDO...',
 		style: {
 			font: '80px Happy Chicken'
 			
@@ -115,11 +118,21 @@ export default class PantallaCarga extends Phaser.Scene
 	this.load.image("FondoGanador", "assets/winbg.png")
 	this.load.image("FondoPerdedor", "assets/losebg.png")
 	this.load.image("Puntos", "assets/dotdotdot.png")
+        
+	
+	//this.#language = getLanguageConfig();
+    
 	
 }
 	create() { 
 		
 		
-		this.scene.start('MenuPrincipal'); 
+		this.scene.start('MenuPrincipal', { language: this.#language }); 
 
-  }}
+  }
+
+  async getTranslations(language){
+	await getTranslations(language)
+}
+
+}
