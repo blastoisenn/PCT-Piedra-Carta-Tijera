@@ -33,7 +33,7 @@ export default class PantallaCarga extends Phaser.Scene
 	  text: '0%',
 	  style: {
 		  fontSize: '20px',
-		  color: '#777',
+		  color: '#fff',
 		  fontFamily: 'Happy Chicken'
 		  
 		 
@@ -66,11 +66,28 @@ export default class PantallaCarga extends Phaser.Scene
 	progressBox.destroy();
 	  });
 	  
-	  this.load.spritesheet("cartassprites", "assets/cartassprites.png", {
+	this.load.spritesheet("cartassprites", "assets/cartassprites.png", {
 		frameWidth: 150,
 		frameHeight: 215,
 		 });
+	this.load.spritesheet("rockatlas", "assets/RockAtlas.png", {
+		frameWidth: 1250,
+		frameHeight: 1250,
+		 });
+	this.load.spritesheet("papersatlas", "assets/PapersAtlas.png", {
+		frameWidth: 1250,
+		frameHeight: 1250,
+		 });
+	this.load.spritesheet("scissorsatlas", "assets/ScissorsAtlas.png", {
+		frameWidth: 1250,
+		frameHeight: 1250,
+		 });
     
+	this.load.image("rocklogo", "assets/rocklogo.png")
+	this.load.image("scissorslogo", "assets/scissorslogo.png")
+	this.load.image("paperlogo", "assets/paperlogo.png")
+	this.load.image("fondoselec1", "assets/fondoselec1.png")
+	this.load.image("fondoselec2", "assets/fondoselec2.png")
 	this.load.image("cartaselect1", "assets/cartaselect1.png");
     this.load.image("cartaselect2", "assets/cartaselect2.png");
     this.load.image("switchboton", "assets/confirmarboton.png");

@@ -66,6 +66,8 @@ export default class HelloWorldScene extends Phaser.Scene {
     let blockx=1395;
     let turno=1;
     let turnoj=1;
+    let turnoj1=1;
+    let turnoj2=0;
     let seleccion1
     let seleccion2
     let posicion1 = 0;
@@ -80,6 +82,12 @@ export default class HelloWorldScene extends Phaser.Scene {
     let color=colores[seleccionjug1]
     let scoreTextoj1;
     let scoreTextoj2;
+    let turnoj1Texto;
+    let turnoj2Texto;
+    let recuerdaTexto;
+    let switchboton;
+    let spritej1;
+    let spritej2;
     let ganador;
 
     console.log(seleccionjug1);
@@ -95,14 +103,17 @@ export default class HelloWorldScene extends Phaser.Scene {
 
     function crearPersonajes(jug1,jug2){
       if(jug1==1){
-      contexto2.add.image(250, 600, 'rocknormalpose').setScale(0.28);}
-      else{if(jug1==2){contexto2.add.image(250, 600, 'papernormalpose').setScale(0.28);}
-      else{contexto2.add.image(250, 600, 'scissorsnormalpose').setScale(0.28);}}
+      spritej1=contexto2.add.sprite(250, 600, 'rockatlas',0).setScale(0.6)
+      spritej1.flipX=true}
+      else{if(jug1==2){spritej1=contexto2.add.sprite(250, 600, 'papersatlas',0).setScale(0.6);
+      spritej1.flipX=true}
+      else{spritej1=contexto2.add.sprite(230, 600, 'scissorsatlas',0).setScale(0.55);}}
 
       if(jug2==1){
-        contexto2.add.image(1670, 600, 'rocknormalpose').setScale(0.28);}
-        else{if(jug2==2){contexto2.add.image(1670, 600, 'papernormalpose').setScale(0.28);}
-        else{contexto2.add.image(1670, 600, 'scissorsnormalpose').setScale(0.28);}}
+        spritej2=contexto2.add.sprite(1685, 600, 'rockatlas',0).setScale(0.6);}
+        else{if(jug2==2){spritej2=contexto2.add.sprite(1685, 600, 'papersatlas',0).setScale(0.6);}
+        else{spritej2=contexto2.add.sprite(1690, 600, 'scissorsatlas',0).setScale(0.55);
+        spritej2.flipX=true}}
     }
 
     crearPersonajes(seleccionjug1,seleccionjug2);
@@ -136,42 +147,36 @@ export default class HelloWorldScene extends Phaser.Scene {
 
       cartas.push(carta);
     }, this);
+    function crearRecuerdaTexto(){
+    recuerdaTexto = contexto2.add.text(contexto2.cameras.main.centerX*0.75, 1, 'Recuerda', { 
+      font: '80px Happy Chicken',
+      stroke: '#000000',
+      strokeThickness: 11,});}
 
-    /*const switchboton = this.add.image(300, 500, "switchboton").setScale(0.1);
-    switchboton.setInteractive();
-    switchboton.on("pointerdown", (pointer, localX, localY) => {
-      if (cartasselec >= 2 && lock == 0 && seleccion2) {
-        lock = 1;
-        console.log(lock);
-        marco1.body.reset(10000, 10000);
-        marco2.body.reset(10000, 10000);
-        seleccion1.sprite.setDepth(1);
-        seleccion2.sprite.setDepth(1);
-        this.physics.moveToObject(
-          seleccion1.sprite,
-          seleccion2.sprite,
-          null,
-          1500
-        );
-        this.physics.moveToObject(
-          seleccion2.sprite,
-          seleccion1.sprite,
-          null,
-          1500
-        );
-        switchcards1(seleccion2, seleccion1);
-        seleccion1 = 0;
-        seleccion2 = 0;
-        cartaanterior = 0;
-        cartasselec = 0;
-      }
-    }); */
+    turnoj1Texto = contexto2.add.text(contexto2.cameras.main.centerX*0.027, 60, ('Turno: '+turnoj1+"/6"), { 
+      font: '55px Happy Chicken',
+      stroke: '#000000',
+      strokeThickness: 11,});
+    
+    turnoj2Texto = contexto2.add.text(contexto2.cameras.main.centerX*1.62, 60, ('Turno: 1/6'), { 
+      font: '55px Happy Chicken',
+      stroke: '#000000',
+      strokeThickness: 11,});
+
+    function actualizarTextos(){
+      turnoj1Texto.setText('Turno: '+turnoj1+"/6");
+      turnoj2Texto.setText('Turno: '+turnoj2+"/6");
+    }
+
+      crearRecuerdaTexto()
+
 
     const flipboton = this.add.image(960, 980, "flipboton").setScale(0.08);
     flipboton.setInteractive();
     flipboton.on("pointerdown", (pointer, localX, localY) => {
       /*if(lock==0&&cartasselec>0){
       seleccion1.flipCarta();}*/
+      recuerdaTexto.destroy();
       flipboton.destroy();
       setTimeout(function switchcards2() {
         for(let i=0;i<5;i++){
@@ -189,15 +194,19 @@ export default class HelloWorldScene extends Phaser.Scene {
           }
       }, 3000);
       setTimeout(function switchcards2() {
+        spritej1.setFrame(1);
+        spritej2.tint=0x777492;
+        turnoj2Texto.tint=0x777492;
           lock=0;
           crearBlock();
-          const switchboton = contexto2.add.image(960, 980, "switchboton").setScale(0.2);
+          switchboton = contexto2.add.image(960, 980, "switchboton").setScale(0.2);
           switchboton.setInteractive();
           switchboton.on("pointerdown", (pointer, localX, localY) => {
             if (cartasselec >= 2 && lock == 0 && turno<13
             && ((seleccion1.posicionx==manoturno&&seleccion2.posicionx!=manoturno)
             ||(seleccion2.posicionx==manoturno&&seleccion1.posicionx!=manoturno))) {
               lock = 1;
+              switchboton.tint=0x777492;
               marco1.body.reset(10000, 10000);
               marco2.body.reset(10000, 10000);
               seleccion1.sprite.setDepth(1);
@@ -263,7 +272,7 @@ export default class HelloWorldScene extends Phaser.Scene {
           
       }, 4000);
     });
-    const switchboton2 = contexto2.add.image(1400, 980, "Puntos").setScale(0.12);
+    const switchboton2 = contexto2.add.image(1400, 980, "VS").setScale(0.12);
     switchboton2.setInteractive();
     switchboton2.on("pointerdown", (pointer, localX, localY) => {turno=11})
 
@@ -337,16 +346,17 @@ export default class HelloWorldScene extends Phaser.Scene {
         seleccion2 = 0;
         cartaanterior = 0;
         cartasselec = 0;
+        switchboton.clearTint();
         lock = 0;
         turno++;
         block.destroy();
         cambioColor()
         turnoCambio();
+        actualizarTextos()
         if(turno<13){
         crearBlock();}
         medioTiempo();
         juegoFinal();
-        puntajes();
         console.log(turno);
       }, 1500);
     }
@@ -363,9 +373,21 @@ export default class HelloWorldScene extends Phaser.Scene {
 
     function turnoCambio(){
     if(lock==0){
-    if(blockx==1395){blockx=525;turnoj=2;manoturno=1395;lock=1;}}
+    if(blockx==1395){blockx=525;turnoj=2;turnoj2++;manoturno=1395;lock=1;
+    spritej1.setFrame(0);
+    spritej2.setFrame(1);
+    spritej1.tint=0x777492;
+    turnoj1Texto.tint=0x777492;
+    spritej2.clearTint();
+    turnoj2Texto.clearTint();}}
     if(lock==0){
-    if(blockx==525){blockx=1395;turnoj=1;manoturno=525;lock=1;}}
+    if(blockx==525){blockx=1395;turnoj=1;turnoj1++;manoturno=525;lock=1;
+    spritej2.setFrame(0);
+    spritej1.setFrame(1);
+    spritej2.tint=0x777492;
+    turnoj2Texto.tint=0x777492;
+    spritej1.clearTint();
+    turnoj1Texto.clearTint();}}
     lock=0;
     }
 
@@ -380,6 +402,11 @@ export default class HelloWorldScene extends Phaser.Scene {
     function medioTiempo(){
       if(turno==7){
         lock=1;
+        spritej1.setFrame(0);
+        spritej1.tint=0x777492;
+        turnoj1Texto.tint=0x777492;
+        switchboton.tint=0x777492;
+        crearRecuerdaTexto()
         for(let i=0;i<15;i++){
           if((cartas[i].posicionx!=manoturno)&&(cartas[i].posicionx!=blockx)){
           cartas[i].flipCarta();}}
@@ -388,6 +415,11 @@ export default class HelloWorldScene extends Phaser.Scene {
         for(let i=0;i<15;i++){
           if((cartas[i].posicionx!=manoturno)&&(cartas[i].posicionx!=blockx)){
           cartas[i].flipCarta();}}
+        spritej1.setFrame(1);
+        spritej1.clearTint();
+        turnoj1Texto.clearTint();
+        switchboton.clearTint();
+        recuerdaTexto.destroy();
         lock=0;
           }, 10000);
   
@@ -396,6 +428,12 @@ export default class HelloWorldScene extends Phaser.Scene {
         function juegoFinal(){
           if(turno==13){
             lock=1;
+            turnoj1Texto.destroy();
+            turnoj2Texto.destroy();
+            spritej1.setFrame(0);
+            spritej1.clearTint();
+            spritej2.clearTint();
+            switchboton.tint=0x777492;
             for(let i=0;i<15;i++){
               if((cartas[i].posicionx!=manoturno)&&(cartas[i].posicionx!=blockx)){
                 contexto2.physics.moveTo(cartas[i].sprite,cartas[i].posicionx,-2000, 600);}}
@@ -404,8 +442,10 @@ export default class HelloWorldScene extends Phaser.Scene {
             for(let i=0;i<15;i++){
               if((cartas[i].posicionx!=manoturno)&&(cartas[i].posicionx!=blockx)){
               cartas[i].sprite.body.reset(-2000, -2000);}}
+              switchboton.clearTint();
+              puntajes();
             lock=0;
-              }, 3000);
+              }, 2000);
       
             }}
 
@@ -432,11 +472,11 @@ export default class HelloWorldScene extends Phaser.Scene {
 
         function puntajes(){
           if(turno==13){
-          scoreTextoj1 = contexto2.add.text(155, 10, '0', { 
+          scoreTextoj1 = contexto2.add.text(contexto2.cameras.main.centerX*0.75, contexto2.cameras.main.centerY*0.75, '0', { 
             font: '130px Happy Chicken',
             stroke: '#000000',
             strokeThickness: 11,});
-          scoreTextoj2 = contexto2.add.text(1660, 10, '0', { 
+          scoreTextoj2 = contexto2.add.text(contexto2.cameras.main.centerX*1.15, contexto2.cameras.main.centerY*0.75, '0', { 
             font: '130px Happy Chicken',
             stroke: '#000000',
             strokeThickness: 11, });}}
