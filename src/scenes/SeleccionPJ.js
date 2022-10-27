@@ -251,9 +251,10 @@ let colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 				
 				let fondo2=this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'fondoselec2').setScale(0.6);
 				let scissorsmouse2 = this.add.image(this.cameras.main.centerX+200, this.cameras.main.centerY+120, 'scissorsicon2').setScale(0.1);
-				this.add.image(posxjg2, posyjg2, 'scissorsatlas',1).setScale(0.9).flipX=true;
 				fondo2.tint=colores[2];
+				this.add.image(posxjg2, posyjg2, 'scissorsatlas',1).setScale(0.9).flipX=true;
 				this.add.image(1620, 970,  'scissorslogo').setScale(0.27)
+				scissorsmouse.setDepth(1);
 				seleccionj2=3;
 				jugadoresselec++;
 				scissorsnormalposedestroy.destroy();
