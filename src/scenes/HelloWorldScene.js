@@ -52,7 +52,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 			{ x: 1395, y: 750 },
     ];
     
-    const colores=[0, 0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
+    const colores=[0xFFFFFF, 0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
     let puntajej1=0;
     let puntajej2=0;
     let cartaj1;
@@ -87,6 +87,19 @@ export default class HelloWorldScene extends Phaser.Scene {
     let spritej1;
     let spritej2;
     let ganador;
+
+    this.juegoMusica = this.sound.add("MusicaJuego")
+    var musicConfig = {
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 1,
+			seek: 1,
+			loop: true,
+			delay: 0,
+		}
+
+    this.juegoMusica.play(musicConfig)
 
     console.log(seleccionjug1);
     console.log(seleccionjug2);
@@ -167,7 +180,11 @@ export default class HelloWorldScene extends Phaser.Scene {
       crearRecuerdaTexto()
 
 
-    let flipboton = this.add.image(960, 980, "flipboton").setScale(0.08);
+    let flipboton = this.add.text(this.cameras.main.centerX-240, this.cameras.main.centerY*1.65, getPhrase("Comenzar"),{ 
+      font: '80px Happy Chicken',
+      stroke: '#000000',
+      strokeThickness: 11,});
+
     flipboton.setInteractive();
     flipboton.on("pointerdown", (pointer, localX, localY) => {
       /*if(lock==0&&cartasselec>0){
@@ -424,6 +441,7 @@ export default class HelloWorldScene extends Phaser.Scene {
         function juegoFinal(){
           if(turno==13){
             lock=1;
+            color=colores[0];
             turnoj1Texto.destroy();
             turnoj2Texto.destroy();
             spritej1.setFrame(0);
@@ -480,26 +498,31 @@ export default class HelloWorldScene extends Phaser.Scene {
         function finDePartida(){
           if(puntajej1==2){ganador=1; lock=1;
             setTimeout(function terminar() {
+            contexto2.juegoMusica.stop();
             contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador })
             },1500);}
 
           if(puntajej2==2){ganador=2;lock=1;
             setTimeout(function terminar() {
+              contexto2.juegoMusica.stop();
             contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador  })
           },1500);}
 
             if(turno==16){
           if(puntajej1>puntajej2){ganador=1; lock=1;
             setTimeout(function terminar() {
+              contexto2.juegoMusica.stop();
             contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador })
             },1500);}
           if(puntajej1<puntajej2){ganador=2;lock=1;
             setTimeout(function terminar() {
+              contexto2.juegoMusica.stop();
             contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador  })
           },1500);}
           if(puntajej1==puntajej2){
           ganador=0;lock=1;
           setTimeout(function terminar() {
+            contexto2.juegoMusica.stop();
           contexto2.scene.start("PostJuego",{ seleccionj1: seleccionjug1, seleccionj2: seleccionjug2, ganador: ganador  })
           },1500);}}}
 

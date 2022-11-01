@@ -1,3 +1,4 @@
+import Button from "./button"
 import { getPhrase } from "./Services/translations"
 
 
@@ -27,6 +28,19 @@ let jugadoresselec=0;
 let eligej1
 let colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 
+this.selecMusic = this.sound.add("MusicaSeleccion")
+		var musicConfig = {
+			mute: false,
+			volume: 1,
+			rate: 1,
+			detune: 1,
+			seek: 1,
+			loop: true,
+			delay: 0,
+		}
+
+		this.selecMusic.play(musicConfig)
+
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'selectfondo').setScale(0.6);
 		
 		contextoPJ.add.text(730, 50, getPhrase('Elige'), { 
@@ -39,15 +53,9 @@ let colores=[0xC3EFC2, 0xEFC2C2 ,0xC8C2EF]
 			stroke: '#000000',
 			strokeThickness: 11,})
 		
-			function crearVS(){
-			let versusb = contextoPJ.add.image(contextoPJ.cameras.main.centerX, contextoPJ.cameras.main.centerY+350, 'VS').setScale(0.11);
-		versusb.setInteractive();
-		versusb.on('pointerdown', (pointer, localX, localY) => {
-		if(jugadoresselec==2){
-		
-			contextoPJ.scene.start("hello-world",{ seleccionj1: seleccionj1, seleccionj2: seleccionj2  })}
-		
-		})}
+			function crearVS(){let botonjugar = new Button(contextoPJ.cameras.main.centerX, contextoPJ.cameras.main.centerY*1.65, getPhrase("Comenzar"), contextoPJ, () =>
+			{contextoPJ.selecMusic.stop()
+				contextoPJ.scene.start("hello-world",{ seleccionj1: seleccionj1, seleccionj2: seleccionj2  })})}
 
 		
 		

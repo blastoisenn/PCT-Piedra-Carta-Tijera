@@ -2,7 +2,7 @@ import { EN_US } from "./enums/languages.js";
 import { getLanguageConfig, getPhrase, getTranslations } from "./Services/translations.js";
 export default class PantallaCarga extends Phaser.Scene
 {
-	#language;
+	//#language;
 
 	constructor()
 	{
@@ -10,7 +10,7 @@ export default class PantallaCarga extends Phaser.Scene
 	}
 	preload() {
 		
-		getTranslations(this.#language)
+		//getTranslations(this.#language)
 		
 		var progressBar = this.add.graphics();
 		var progressBox = this.add.graphics();
@@ -108,8 +108,6 @@ export default class PantallaCarga extends Phaser.Scene
 	this.load.image("scissorsnormalpose","assets/scissorsnormalpose.png");
 	this.load.image("rocknormalpose","assets/rocknormalpose.png");
 	this.load.image("VS","assets/VS.png");
-	this.load.audio("MusicaMenu", "assets/sounds/Música Menú Principal.mp3") 
-	this.load.audio("CartaFlip", "assets/sounds/Card_Flip.mp3")
 	this.load.image("FondoMenu", "assets/menufondo.png")
 	this.load.image("Logo", "assets/logo.png")
 	this.load.image("BotonConfig", "assets/Ajustes.png")
@@ -118,6 +116,15 @@ export default class PantallaCarga extends Phaser.Scene
 	this.load.image("FondoGanador", "assets/winbg.png")
 	this.load.image("FondoPerdedor", "assets/losebg.png")
 	this.load.image("Puntos", "assets/dotdotdot.png")
+
+	this.load.audio("MusicaMenu", "assets/sounds/Música Menú Principal.mp3") 
+	this.load.audio("CartaFlip", "assets/sounds/Card_Flip.mp3")
+	this.load.audio("MusicaEmpate", "assets/sounds/MusicaEmpate.mp3")
+	this.load.audio("RockWin", "assets/sounds/RockWin.mp3")
+	this.load.audio("PapersWin", "assets/sounds/PapersWin.mp3")
+	this.load.audio("ScissorsWin", "assets/sounds/ScissorsWin.mp3")
+	this.load.audio("MusicaSeleccion", "assets/sounds/MusicaFondo.mp3")
+	this.load.audio("MusicaJuego", "assets/sounds/MusicaFondo2.mp3")
         
 	
 	//this.#language = getLanguageConfig();
@@ -127,12 +134,12 @@ export default class PantallaCarga extends Phaser.Scene
 	create() { 
 		
 		
-		this.scene.start('MenuPrincipal', { language: this.#language }); 
+		this.scene.start('Idioma'/*, { language: this.#language }*/); 
 
   }
 
-  async getTranslations(language){
+  /*async getTranslations(language){
 	await getTranslations(language)
-}
+}*/
 
 }

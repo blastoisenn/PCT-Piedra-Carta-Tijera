@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import Cartas from './scenes/Cartas'
-
+import Idioma from './scenes/Idioma'
 import HelloWorldScene from './scenes/HelloWorldScene'
 import Jugador from './scenes/Jugador'
 import MenuPrincipal from './scenes/Menuprincipal'
@@ -35,7 +35,7 @@ const config = {
 	},
 
 
-	scene: [PantallaCarga, MenuPrincipal,  HelloWorldScene, Cartas, Jugador,  SeleccionPJ, PostJuego, Tablero]
+	scene: [PantallaCarga, Idioma, MenuPrincipal,  HelloWorldScene, Cartas, Jugador,  SeleccionPJ, PostJuego, Tablero]
 
 }
 

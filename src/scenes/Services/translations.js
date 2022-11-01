@@ -4,7 +4,7 @@ import { DE_DE, EN_US, ES_AR, PT_BR } from '../enums/languages.js';
 
 const PROJECT_ID = '43';
 let translations = null;
-let language = EN_US;
+let language = ES_AR;
 
 export async function getTranslations(lang = language, callback) {
     localStorage.clear();
@@ -17,7 +17,6 @@ export async function getTranslations(lang = language, callback) {
     return await fetch(`https://traduci-la-strapi.herokuapp.com/api/translations/${PROJECT_ID}/${language}`)
     .then(response => response.json())
     .then(data => {
-        console.log(`FETCH TRANSLATIONS --- ${JSON.stringify(data)}`);
         localStorage.setItem('translations', JSON.stringify(data));
         translations = data;
         if(callback) callback()
@@ -26,7 +25,6 @@ export async function getTranslations(lang = language, callback) {
 
 export function getPhrase(key) {
     if (!translations) {
-        console.log("🚀 ~ file: translations.js ~ line 25 ~ getPhrase ~ translations", translations)
         const locals = localStorage.getItem('translations');
         translations = locals ? JSON.parse(locals) : null;
     }

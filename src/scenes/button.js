@@ -16,5 +16,6 @@ class Button{
             .on('pointerover', () => button.setStyle({ fill: '#B7BBC5' }))
             .on('pointerout', () => button.setStyle({ fill: '#fff' }));
     }
+
 }
 export default Button;

@@ -1,11 +1,9 @@
-
-
 import Button from "./button"
-import { getPhrase } from "./Services/translations"
+import { getTranslations, getPhrase } from "./Services/translations"
 
 export default class MenuPrincipal extends Phaser.Scene
 {
-	
+	#language
 	constructor()
 	{
 		super('MenuPrincipal')
@@ -16,13 +14,14 @@ export default class MenuPrincipal extends Phaser.Scene
 		}
 
 		init(data)
-		{
-			this.language = data.seleccionj1;
-			
-		}
+{
+    //this.language=data.language
+	
+}
 
 	create(){
-
+        
+		//let idioma=this.language
 		this.menuMusic = this.sound.add("MusicaMenu")
 		var musicConfig = {
 			mute: false,
@@ -33,6 +32,8 @@ export default class MenuPrincipal extends Phaser.Scene
 			loop: true,
 			delay: 0,
 		}
+		
+		//getTranslations(this.#language)
 		
 		this.menuMusic.play(musicConfig)
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, "FondoMenu").setScale(0.6);
@@ -45,6 +46,10 @@ export default class MenuPrincipal extends Phaser.Scene
         BotonCfg.on("pointerdown", (pointer, localX, localY) => {this.sound.play("CartaFlip")
        });
 	}
+
+	/*async getTranslations(language){
+		await getTranslations(language)
+	}*/
 		
 }
 	
