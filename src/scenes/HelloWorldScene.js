@@ -285,9 +285,9 @@ export default class HelloWorldScene extends Phaser.Scene {
           
       }, 4000);
     });
-    let switchboton2 = contexto2.add.image(1400, 980, "VS").setScale(0.12);
+    /*let switchboton2 = contexto2.add.image(1400, 980, "VS").setScale(0.12);
     switchboton2.setInteractive();
-    switchboton2.on("pointerdown", (pointer, localX, localY) => {turno=11})
+    switchboton2.on("pointerdown", (pointer, localX, localY) => {turno=11})*/
 
     const Rflipanim1 = this.anims.create({
       key: "Rflip1",

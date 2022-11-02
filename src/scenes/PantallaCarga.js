@@ -86,6 +86,8 @@ export default class PantallaCarga extends Phaser.Scene
 		frameHeight: 1250,
 		 });
     
+	this.load.image("X", "assets/X.png")
+	this.load.image("tutorial", "assets/tutorial.png")	 
 	this.load.image("rocklogo", "assets/rocklogo.png")
 	this.load.image("scissorslogo", "assets/scissorslogo.png")
 	this.load.image("paperlogo", "assets/paperlogo.png")
