@@ -1,14 +1,11 @@
 import Phaser from 'phaser'
 import Cartas from './scenes/Cartas'
 import Idioma from './scenes/Idioma'
-import HelloWorldScene from './scenes/HelloWorldScene'
-import Jugador from './scenes/Jugador'
+import Juego from './scenes/Juego'
 import MenuPrincipal from './scenes/Menuprincipal'
 import PantallaCarga from './scenes/PantallaCarga'
 import PostJuego from './scenes/PostJuego'
 import SeleccionPJ from './scenes/SeleccionPJ'
-
-import Tablero from './scenes/Tablero'
 
 const config = {
 	type: Phaser.AUTO,
@@ -35,7 +32,7 @@ const config = {
 	},
 
 
-	scene: [PantallaCarga, Idioma, MenuPrincipal,  HelloWorldScene, Cartas, Jugador,  SeleccionPJ, PostJuego, Tablero]
+	scene: [PantallaCarga, Idioma, MenuPrincipal,  Juego, Cartas,  SeleccionPJ, PostJuego]
 
 }
 
