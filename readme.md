@@ -1,6 +1,6 @@
 # PCT
 
-![PCT-Logo](dist\assets\logo.png)
+![dist\assets](dist\assets\logo.png)
 
 ## Piedra Carta Tijera 
 
