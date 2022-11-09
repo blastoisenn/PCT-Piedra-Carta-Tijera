@@ -10,7 +10,7 @@ export default class MenuPrincipal extends Phaser.Scene {
     let cerrar; // Símbolo para cerrar los Pop-ups
     this.menuMusic = this.sound.add("MusicaMenu"); // Música de fondo
     // Configuración del sonido
-    var musicConfig = {
+    let musicConfig = {
       mute: false,
       volume: 1,
       rate: 1,

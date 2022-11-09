@@ -96,7 +96,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 
     this.juegoMusica = this.sound.add("MusicaJuego"); // Música de Fondo
     // Configuración de Sonido
-    var musicConfig = {
+    let musicConfig = {
       mute: false,
       volume: 1,
       rate: 1,

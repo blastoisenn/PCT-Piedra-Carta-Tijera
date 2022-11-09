@@ -38,7 +38,7 @@ export default class SeleccionPJ extends Phaser.Scene {
     this.selecMusic = this.sound.add("MusicaSeleccion"); // Música de fondo
 
     //Configuración del sonido
-    var musicConfig = {
+    let musicConfig = {
       mute: false,
       volume: 1,
       rate: 1,

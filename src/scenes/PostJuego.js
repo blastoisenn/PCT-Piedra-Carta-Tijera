@@ -43,7 +43,7 @@ export default class PostJuego extends Phaser.Scene
 		let canciones=[contexto.empateMusic,contexto.rockMusic, contexto.papersMusic, contexto.scissorsMusic]
         
 		// Configuración de Sonido
-		var musicConfig = {
+		let musicConfig = {
 			mute: false,
 			volume: 1,
 			rate: 1,
