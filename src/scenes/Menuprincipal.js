@@ -8,6 +8,7 @@ export default class MenuPrincipal extends Phaser.Scene {
 
   create() {
     let cerrar; // Símbolo para cerrar los Pop-ups
+    let volumenimg // Imagen del boton de Sonido
     this.menuMusic = this.sound.add("MusicaMenu"); // Música de fondo
     // Configuración del sonido
     let musicConfig = {
@@ -296,11 +297,16 @@ export default class MenuPrincipal extends Phaser.Scene {
 
 
     // Botón de Sonido
+    if (this.sound.mute == false) {
+      volumenimg = "volumen";
+    } else {
+      volumenimg = "volumen2";
+    }
     let BotonCfg = this.add
       .image(
         this.cameras.main.centerX * 0.1,
         this.cameras.main.centerY * 0.2,
-        "volumen"
+        volumenimg
       )
       .setScale(0.15);
 
