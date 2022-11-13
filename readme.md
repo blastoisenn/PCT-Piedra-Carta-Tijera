@@ -1,12 +1,17 @@
 # PCT
 
-![dist\assets](dist\assets\logo.png)
-
 ## Piedra Carta Tijera 
 
 Un juego hecho por Dash Team
 
 Integrantes: Valentín Fischer, Nicolás Duverne, Santiago Airaudo
+
+Piedra Carta Tijera es un juego de estrategia y memoria uno contra uno. Recuerda las posiciones de las cartas y recuérdalas mientras las cambias de lugar, para luego batallar contra la mano de tu oponente.
+Elije entre 3 carismáticos personajes y juega contra tus amigos
+
+Juega aquí: https://pctgame.netlify.app/
+
+Juego creado utilizando Phaser 3 y Parcel Template:
 
 ![phaser3-parceljs-template](https://user-images.githubusercontent.com/2236153/71606463-37a0da80-2b2e-11ea-9b5f-5d26ccc84f91.png)
 
